@@ -8,7 +8,7 @@ MODEL_STEPS = int(os.environ.get('MODEL_STEPS'))
 BATCH_SAMPLES = int(os.environ.get('BATCH_SAMPLES'))
 
 # prm = "_KEYS_ some string ^ _KEYS_ another string"
-prm = os.environ.get.get('PR')
+prm = os.environ.get('PR')
 prm = prm.replace("_KEYS_", f"{MODEL_KEY} {MODEL_CLASS}")
 splittedPrompts = prm.split("^")
 
@@ -21,7 +21,7 @@ for prompt in splittedPrompts:
                 --n_samples 1 \
                 --n_iter $BATCH_ITER \
                 --scale 7.0 \
-                --ddim_steps 10 \
+                --ddim_steps 50 \
                 --ckpt "./trained_models/$MODEL_ID.ckpt" \
                 --prompt "{prompt}"
             """
