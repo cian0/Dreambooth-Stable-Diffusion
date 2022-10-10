@@ -16,6 +16,7 @@ from ldm.util import instantiate_from_config
 from ldm.models.diffusion.ddim import DDIMSampler
 from ldm.models.diffusion.plms import PLMSSampler
 
+from datetime import datetime
 
 def chunk(it, size):
     it = iter(it)
@@ -270,8 +271,14 @@ def main():
                     # additionally, save as grid
                     grid = torch.stack(all_samples, 0)
                     grid = rearrange(grid, 'n b c h w -> (n b) c h w')
+
+                    # current dateTimeStr
+                    now = datetime.now()
                     
-                    pr = ((opt.prompt[:20] + '..') if len(opt.prompt) > 22 else opt.prompt)
+                    # convert to string
+                    date_time_str = now.strftime("%Y%m%d_%H%M%S_")
+                    
+                    pr = date_time_str + ((opt.prompt[:20] + '..') if len(opt.prompt) > 22 else opt.prompt)
 
                     for i in range(grid.size(0)):
                         save_image(grid[i, :, :, :], os.path.join(outpath,pr +'_{}.png'.format(i)))
