@@ -17,6 +17,7 @@ from ldm.models.diffusion.ddim import DDIMSampler
 from ldm.models.diffusion.plms import PLMSSampler
 
 from datetime import datetime
+import random
 
 def chunk(it, size):
     it = iter(it)
@@ -165,7 +166,7 @@ def main():
     parser.add_argument(
         "--seed",
         type=int,
-        default=42,
+        default=random.randint(1, 60000000000),
         help="the seed (for reproducible sampling)",
     )
     parser.add_argument(
@@ -274,7 +275,7 @@ def main():
 
                     # current dateTimeStr
                     now = datetime.now()
-                    
+
                     # convert to string
                     date_time_str = now.strftime("%Y%m%d_%H%M%S_")
                     
