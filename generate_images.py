@@ -305,6 +305,8 @@ womanprompts = ['water princess female',
 'female elf warrior',
 'medieval woman',
 'medieval girl warrior',
+'spectre female',
+'ethereal female',
 'medieval beautiful woman',
 'post apocalyptic beauty']
 
