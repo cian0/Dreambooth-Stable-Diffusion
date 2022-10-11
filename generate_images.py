@@ -331,7 +331,7 @@ for prompt in splittedPrompts:
                 --n_samples 1 \
                 --n_iter $BATCH_ITER \
                 --scale 7.0 \
-                --ddim_steps 50 \
+                --ddim_steps 100 \
                 --ckpt "./trained_models/$MODEL_ID.ckpt" \
                 --prompt "{MODEL_KEY + ' ' + MODEL_CLASS + ' as ' + random.choice(images)['prompt']}"
             """
