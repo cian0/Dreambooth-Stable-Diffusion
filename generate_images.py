@@ -1,4 +1,6 @@
 import os
+import requests
+import random 
 
 # Get environment variables
 MODEL_ID = os.getenv('MODEL_ID')
@@ -13,6 +15,12 @@ prm = prm.replace("_KEYS_", f"{MODEL_KEY} {MODEL_CLASS}")
 splittedPrompts = prm.split("^")
 
 for prompt in splittedPrompts:
+
+    r = requests.get('https://lexica.art/api/v1/search?q=' + prompt.replace(' ', '+')) 
+    r.json()
+    images = r.json()['images']
+
+    # print(images[0]['id'])
     for idx in range(BATCH_SAMPLES):
         get_ipython().system(
             f"""
@@ -23,6 +31,7 @@ for prompt in splittedPrompts:
                 --scale 7.0 \
                 --ddim_steps 50 \
                 --ckpt "./trained_models/$MODEL_ID.ckpt" \
-                --prompt "{prompt}"
+                --prompt "{MODEL_KEY + ' ' + MODEL_CLASS + ' as ' + random.choice(images)['prompt']}"
             """
         )
+        print('prompting for ' + MODEL_KEY + ' ' + MODEL_CLASS + ' as ' + random.choice(images)['prompt'])
