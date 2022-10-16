@@ -602,6 +602,7 @@ if __name__ == "__main__":
 
         # merge trainer cli with config
         trainer_config = lightning_config.get("trainer", OmegaConf.create())
+        trainer_config["accelerator"] = "ddp"
 
         # Set the steps
         trainer_config.max_steps = opt.max_training_steps
