@@ -602,11 +602,7 @@ if __name__ == "__main__":
 
         # merge trainer cli with config
         trainer_config = lightning_config.get("trainer", OmegaConf.create())
-<<<<<<< Updated upstream
-=======
         trainer_config["strategy"] = "ddp"
->>>>>>> Stashed changes
-
         # Set the steps
         trainer_config.max_steps = opt.max_training_steps
 
