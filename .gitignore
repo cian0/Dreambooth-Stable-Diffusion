@@ -7,3 +7,8 @@ train.bat
 __pycache__
 */**/__pycache__
 logs
+outputs/
+model.ckpt
+training_samples
+trained_models
+*.ckpt
